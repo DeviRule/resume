@@ -40,10 +40,10 @@
 
 \RequirePackage[
 	a4paper,
-	left=0.80in,
-	right=0.80in,
-	top=0.85in, % tune this!
-	bottom=0.55in,
+	left=0.40in,
+	right=0.40in,
+	top=0.28in, % tune this!
+	bottom=0.40in,
 	nohead
 ]{geometry}
 

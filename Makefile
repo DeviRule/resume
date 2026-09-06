@@ -8,16 +8,26 @@ en: clean
 	mkdir -p build
 	xelatex -output-directory=build resume.tex 
 
-zh_CN: clean
+zh_CN: zh-industry
+
+zh-industry: clean
 	mkdir -p build
-	xelatex -output-directory=build resume-zh_CN.tex 
+	xelatex -output-directory=build resume-zh_CN.tex
+	xelatex -output-directory=build resume-zh_CN.tex
+	mv build/resume-zh_CN.pdf "build/王虎林-简历.pdf"
 
-	# UNCOMMENT the 2 lines below if you want to use bibliographic references
-	# bibtex build/resume-zh_CN
-	# xelatex -output-directory=build resume-zh_CN.tex 
+zh-academic: clean
+	mkdir -p build
+	xelatex -output-directory=build resume-zh_CN-academic.tex
+	xelatex -output-directory=build resume-zh_CN-academic.tex
+	mv build/resume-zh_CN-academic.pdf "build/王虎林-简历-学术.pdf"
 
-	xelatex -output-directory=build resume-zh_CN.tex 
-	mv build/resume-zh_CN.pdf build/xxx-xxx.pdf
+zh-all: clean
+	mkdir -p build
+	xelatex -output-directory=build resume-zh_CN.tex && xelatex -output-directory=build resume-zh_CN.tex
+	xelatex -output-directory=build resume-zh_CN-academic.tex && xelatex -output-directory=build resume-zh_CN-academic.tex
+	mv build/resume-zh_CN.pdf "build/王虎林-简历.pdf"
+	mv build/resume-zh_CN-academic.pdf "build/王虎林-简历-学术.pdf"
 
 pdf: clean $(PDFS)
 
