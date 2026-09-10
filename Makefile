@@ -35,11 +35,11 @@ pdf: clean $(PDFS)
 	xelatex $<
 
 ifeq ($(OS),Windows_NT)
-	# on Windows
-	RM = cmd //C del
+# on Windows
+RM = cmd //C del
 else
-	# on Unix/Linux
-	RM = rm -f
+# on Unix/Linux
+RM = rm -f
 endif
 
 clean:

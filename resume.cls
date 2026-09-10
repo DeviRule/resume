@@ -238,3 +238,6 @@
 \newcommand{\texthl}[1]{\textcolor{accentcolor}{\textbf{#1}}}
 
 \newcommand{\normalline}[1]{\par #1 \par}
+
+% 副信息行：跟在 \datedsubsection 之后的一行小字注释（实验室、导师、排名等）
+\newcommand{\subline}[1]{{\par\vspace{-0.9ex}\small\color{black!65}#1\par}\vspace{0.2ex}}
