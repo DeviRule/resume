@@ -14,20 +14,20 @@ zh-industry: clean
 	mkdir -p build
 	xelatex -output-directory=build resume-zh_CN.tex
 	xelatex -output-directory=build resume-zh_CN.tex
-	mv build/resume-zh_CN.pdf "build/王虎林-简历.pdf"
+	mv build/resume-zh_CN.pdf "build/王虎林-简历-公司.pdf"
 
 zh-academic: clean
 	mkdir -p build
 	xelatex -output-directory=build resume-zh_CN-academic.tex
 	xelatex -output-directory=build resume-zh_CN-academic.tex
-	mv build/resume-zh_CN-academic.pdf "build/王虎林-简历-学术.pdf"
+	mv build/resume-zh_CN-academic.pdf "build/王虎林-简历-教职.pdf"
 
 zh-all: clean
 	mkdir -p build
 	xelatex -output-directory=build resume-zh_CN.tex && xelatex -output-directory=build resume-zh_CN.tex
 	xelatex -output-directory=build resume-zh_CN-academic.tex && xelatex -output-directory=build resume-zh_CN-academic.tex
-	mv build/resume-zh_CN.pdf "build/王虎林-简历.pdf"
-	mv build/resume-zh_CN-academic.pdf "build/王虎林-简历-学术.pdf"
+	mv build/resume-zh_CN.pdf "build/王虎林-简历-公司.pdf"
+	mv build/resume-zh_CN-academic.pdf "build/王虎林-简历-教职.pdf"
 
 pdf: clean $(PDFS)
 
