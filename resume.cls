@@ -240,4 +240,5 @@
 \newcommand{\normalline}[1]{\par #1 \par}
 
 % 副信息行：跟在 \datedsubsection 之后的一行小字注释（实验室、导师、排名等）
-\newcommand{\subline}[1]{{\par\vspace{-0.9ex}\small\color{black!65}#1\par}\vspace{0.2ex}}
+% 尾部负间距抵消下一个 \datedsubsection 的上间距，使带副信息行的条目与其他条目行距一致
+\newcommand{\subline}[1]{{\par\vspace{-0.9ex}\small\color{black!65}#1\par}\vspace{-1.0ex}}

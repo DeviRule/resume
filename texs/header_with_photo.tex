@@ -2,17 +2,20 @@
 % 照片占位图为 images/avatar.jpg —— 换成本人证件照即可，无需改本文件
 \begin{tblr}{
     width = \linewidth,
-    colspec = {Q[l,2.35cm]X[c]Q[r,2.35cm]},
-    % rows = {abovesep=0pt, belowsep=0pt},
+    colspec = {Q[l,2.6cm]X[c]Q[r,2.6cm]},
     columns = {colsep=2pt},
-    row{1} = {ht=2.4em, font=\Huge},
-    row{3} = {ht=2em, abovesep=0pt},
+    rows = {abovesep=0pt, belowsep=0pt},
+    % 三行总高与照片等高，避免行被照片撑开后在下方留下大片空白
+    row{1} = {ht=0.52in, font=\Huge},
+    row{2} = {ht=0.41in},
+    row{3} = {ht=0.41in},
   }
-  & 王虎林 & \SetCell[r=3]{f} \includegraphics[width=0.9in]{images/avatar} \\
-  & \identity{政治面貌：群众}\dotSep \hometown{籍贯：辽宁}\dotSep \calendar{1998.5.30} &  \\
+  & 王虎林 & \SetCell[r=3]{f} \includegraphics[width=1.0in]{images/avatar} \\
+  & \identity{政治面貌：群众}\dotSep \hometown{长春}\dotSep \calendar{1998.5.30} &  \\
   & \github[DeviRule]{https://github.com/DeviRule}\dotSep
     % \linkedin[hulin-wang]{https://www.linkedin.com/in/hulin-wang-4ab350164/}\dotSep
     % \homepage[hulinwang.me]{https://www.hulinwang.me/} \dotSep 
      \phone{13756007928}\dotSep \email{hwang551@asu.edu}
 \\
 \end{tblr}
+\vspace{-0.12in} % 收紧表头与第一个章节标题之间的间距
