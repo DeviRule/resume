@@ -30,66 +30,69 @@
 \role{应用科学家实习生（Applied Scientist Intern）}{}
 \normalline{\textbf{面向静态分析规则开发的多智能体告警研判系统}}
 \begin{itemize}
-  \item 将一条静态分析规则的验证周期从 10--15 天压缩至 2--3 天：自动研判该规则在生产环境中的告警，准确率 90\%，单条告警耗时 4 分钟、成本 \$0.50
-  \item 基于 Strands Agent SDK 构建“摘要—上下文收集—验证”三阶段多智能体流水线，在同一模型下比 Claude Code 高 14 分
-  \item 覆盖两套内部静态分析器在 Python、Java、JavaScript 上的全部 47 条规则，无需按规则或按语言调参
-  \item 在从一年生产研判历史中挖掘的 600+ 告警基准集（覆盖全部规则）上测试，多次运行的判定一致性保持 95\%
+\item 自动判断生产环境里的静态分析告警是否有效，把单条规则的验证周期从 10--15 天压到 2--3 天；判断准确率 90\%，平均每条告警处理耗时 4 分钟，成本 \$0.50
+\item 用 Strands Agent SDK 搭了一套多智能体工作流，先做告警摘要，再收集相关代码，最后验证；用同一个模型时，评测得分比 Claude Code 高 14 分
+\item 支持两套内部静态分析器的全部 47 条规则，覆盖 Python、Java、JavaScript；不用针对某条规则或某种语言单独调参
+\item 从过去一年的生产告警分析记录里整理了 600+ 条测试样本，覆盖所有规则；运行五次下来，判断结果一致率 95\%
 \end{itemize}
-
 \datedsubsection{\textbf{亚利桑那州立大学 SEFCOM 安全实验室}\ 美国·坦佩}{2022.08 -- 至今}
 \role{博士研究生}{}
 \normalline{\textbf{根因驱动的漏洞修复（Root-Cause-Driven Patching）}}
 \begin{itemize}
-  \item 设计两阶段漏洞修复流水线：先以静态—动态混合分析（hybrid static-dynamic analysis）定位根因候选，可捕获 CodeQL 等纯静态分析遗漏的多点缺陷与间接调用
-  \item 将根因候选送入带仓库索引与文件编辑工具的轻量修复智能体，为修复提供更丰富的漏洞上下文
-  \item 构建 178 个 C/C++ 漏洞的人工标注漏洞补丁质量数据集，横向对比多个智能体生成的补丁
-  \item 经三位人类专家多数投票验证，补丁质量较 ChatGPT Codex 等通用编码智能体提升 20\%
+\item 设计了一套两阶段自动修复漏洞的流程：先用静态分析结合程序运行信息，定位漏洞可能的根因，能找出 CodeQL 这类纯静态工具漏掉的跨位置缺陷和间接调用
+\item 把定位结果交给一个轻量修复 Agent，并给它仓库搜索和文件编辑工具，让它理解相关代码后生成补丁
+\item 收集并整理 178 个 C/C++ 漏洞，逐个人工标注补丁质量，用来对比不同 Agent 的修复效果
+\item 请三位专家评审，按多数意见确定最终结果；相比 ChatGPT Codex 等通用编码 Agent，补丁质量提升了 20%
 \end{itemize}
-\normalline{\textbf{无人机固件安全与信息物理漏洞挖掘（DARPA FIRE）}}
+\normalline{\textbf{无人机固件安全与信息物理漏洞挖掘}}
+\normalline{美国国防高级研究计划局资助项目FIRE， 资助800万美金}
 \begin{itemize}
-  \item 主导无人机飞控（ArduPilot 及某商用衍生版本）的 sim-to-real 漏洞测试流水线：通过固件指纹识别机型与版本，在 PX4 / Gazebo SITL 中重建目标，并对配置参数、指令与物理状态实施策略引导模糊测试（PGFuzz）
-  \item 在真实机架上复现 2 组已知的策略违例输入集，证明降保真度仿真无需数字孪生即可反映真实硬件行为
-  \item 从零搭建 ARM Cortex-M 裸机固件重宿主（rehosting）能力：由 flash dump 经自定义链接脚本重建 ELF 镜像，二进制修补架构检查与未建模的 MMIO 读取以在 QEMU 下执行，并加入 GDB 插桩进行在线内存检查，作为团队动态分析基座交付
-  \item 从剥离符号的固件中恢复符号：推断原始工具链、交叉编译匹配的开源库，并在 IDA Pro / Ghidra 中做 FLIRT 签名匹配
+\item 主导无人机飞控（ArduPilot 及某商用衍生版本）的 sim-to-real 漏洞测试流水线：先通过固件指纹判断机型和版本，在 PX4 / Gazebo SITL 里重建目标环境，再对配置参数、指令和物理状态做策略引导模糊测试（PGFuzz）
+\item 在真实机架上复现了 2 组已知的策略违例输入集，说明降保真度仿真不用数字孪生也能反映真实硬件行为
+\item 从零搭起 ARM Cortex-M 裸机固件重宿主（rehosting）能力：用 flash dump 配合自定义链接脚本重建 ELF 镜像，再通过二进制修补绕过架构检查、处理未建模的 MMIO 读取，让固件能在 QEMU 下跑起来；同时加入 GDB 插桩做在线内存检查，最后作为团队动态分析基座交付
+\item 从剥离符号的固件里恢复符号：推断原始工具链，交叉编译匹配的开源库，再在 IDA Pro / Ghidra 里做 FLIRT 签名匹配
 \end{itemize}
-\normalline{\textbf{LLM 辅助的模糊测试研究}}
+\normalline{\textbf{LLM辅助的模糊测试研究}}
 \begin{itemize}
-  \item 提出 LLM 辅助的源码修补 + AFL++ 模糊测试（fuzzing）流水线，用于挖掘成熟代码库中的遮蔽缺陷（occluded bugs，被更易触发的崩溃所掩盖的漏洞）
-  \item 构建自动闭环：崩溃聚类与根因提示 $\rightarrow$ LLM 引导的源码修改 $\rightarrow$ 重新构建 $\rightarrow$ 再次 fuzz，并以定向回归测试保证修复正确性，将误报率从 90\% 降至 30\%，产出详细漏洞报告与 PoC 测试用例
-  \item 在 Objdump、FFmpeg、GPAC 等项目上单目标发现 20+ 个独立遮蔽漏洞，涵盖 Use-After-Free、堆/栈溢出与段错误，均以 ASan/MSan 及定向回归测试验证
+\item 设计并实现了一条 LLM 辅助的源码修补 + AFL++ 模糊测试（fuzzing）流水线，用来挖成熟代码库里那些被更容易触发的崩溃掩盖住的遮蔽缺陷（occluded bugs）
+\item 把流程串成自动闭环：崩溃聚类、根因提示 → LLM 改源码 → 重新构建 → 再跑 fuzz；中间用定向回归测试确认修复没问题。误报率从 90\% 降到 30\%，最后产出详细漏洞报告和 PoC 测试用例
+\item 在 Objdump、FFmpeg、GPAC 等项目上，单目标发现 20+ 个独立遮蔽漏洞，包括 Use-After-Free、堆/栈溢出和段错误，都用 ASan/MSan 及定向回归测试验证过
 \end{itemize}
 
-\datedsubsection{\textbf{Team Shellphish / DARPA AIxCC}\ 美国·坦佩}{2023.08 -- 2025.08}
+\datedsubsection{\textbf{Team Shellphish / 人工智能网络安全挑战赛（AIxCC）}\ 美国·坦佩}{2023.08 -- 2025.08}
 \role{漏洞修复组件负责人（Patching Component Lead）}{}
-\normalline{DARPA 人工智能网络安全挑战赛（AIxCC）：面向真实开源软件的自动化漏洞发现与修复全球竞赛，团队获\textbf{第五名}，累计奖金 \textbf{300 万美元}}
-\normalline{\textbf{LLM 安全漏洞修复智能体}}
+\normalline{美国国防高级研究计划局人工智能网络安全挑战赛（AIxCC）：面向真实开源和关键基建软件的自动化漏洞发现与修复的全球竞赛，团队获\textbf{第五名}，团队奖金 \textbf{200 万美元}}
+\normalline{\textbf{安全漏洞修复智能体}}
 \begin{itemize}
-  \item 主导构建具备自主决策能力的多智能体 LLM 系统，跨分布式组件编排自动研判、漏洞补丁合成与验证流程
-  \item 在智能体中构建反馈闭环，运行 fuzzing、PoV 复测与确定性回归测试套件验证补丁，仅放行真正消除漏洞（而非仅消除崩溃）且保持原有功能的补丁；最终计分轮补丁接受率 $>$95\%
-  \item 在 curl、NGINX、Apache ZooKeeper 等大型开源项目上研判并修复 30+ 个 C/Java 漏洞，覆盖缓冲区溢出、Use-After-Free、命令注入、路径穿越等多类 CWE
+\item 负责搭建多智能体漏洞修复系统，让系统能自主判断、生成补丁并验证，把分散在不同服务里的组件串成完整流程
+\item 给智能体加了反馈闭环：跑 fuzzing、复现崩溃样本、跑确定性回归测试来检查补丁；只有真正修掉漏洞（不是只让崩溃消失）且不影响原有功能的补丁才会通过。最终计分轮补丁正确率 $>$95%
+\item 在 curl、NGINX、Apache ZooKeeper 等大型开源项目上分析并修复了 30+ 个 C/Java 漏洞，涉及缓冲区溢出（Buffer Overflow）、释放后重用（Use After Free）、命令注入（Command Injection）、路径穿越（Path Traversal）等类型
 \end{itemize}
-\normalline{\textbf{LLM 辅助的 PoC 生成组件}}
+
+\normalline{\textbf{漏洞验证用例（PoC）生成智能体}}
 \begin{itemize}
-  \item 开发多智能体 LLM 框架，将静态分析输出与上下文信息结合，合成定向测试用例
-  \item 构建基于可达性的程序切片流水线，为智能体提供聚焦的代码路径用于输入生成，并以覆盖率引导搜索绕过阻断逻辑
-  \item 单个 PoC 在 5 分钟内产出，在 ZooKeeper、Tika、jsoup 等开源项目（1 万--10 万行代码）上触发 10 个漏洞，其中 5 个为 Jazzer 运行 8 小时未能发现
+\item 开发了一套多智能体系统，把静态分析结果和上下文信息结合起来，生成能定向触发崩溃的测试用例
+\item 先做基于可达性的程序切片，给智能体划出更聚焦的代码路径来生成输入，再用覆盖率引导搜索绕过阻断逻辑
+\item 平均 5 分钟就能生成触发崩溃的测试用例；在 ZooKeeper、Tika、jsoup 等开源项目（1 万–10 万行代码）里发现 10 个漏洞，其中 5 个是 Jazzer 连续跑 8 小时都没发现的
 \end{itemize}
 
 \datedsubsection{\textbf{南加州大学 ITS 治理、风险与合规（GRC）团队}\ 美国·洛杉矶}{2021.10 -- 2022.05}
-\role{学生研究员（Student Researcher）}{}
+\role{学生研究员（Student Researcher）}
+\normalline{\textbf{校园 IT 风险评估与漏洞治理平台}}
 \begin{itemize}
-  \item 设计并上线 \textbf{4 项风险评估指标}及配套监控系统，评估全校级基础设施的安全态势，以 Python 构建可扩展的分析方案实现风险实时量化
+  \item 设计并上线 4 项风险评估指标及配套监控系统，评估校级基础设施的安全态势，以 Python 构建可扩展的分析方案实现风险实时量化
   \item 构建分析框架度量并优化 BigFix 补丁分发系统的效率，向校方管理层汇报技术结论，将复杂数据转化为可执行的决策依据
   \item 搭建自动化监控与告警基础设施，整合 SentinelOne 等多源数据计算风险指标，向安全运营团队实时推送告警
 \end{itemize}
 
 \ifacademic\else
 \datedsubsection{\textbf{LitePoint}\ 美国·圣何塞}{2019.06 -- 2019.09}
-\role{软件工程实习生（Summer Software Engineer Intern）}{}
+\role{软件工程实习生（Software Engineer Intern）}{}
+\normalline{\textbf{制造数据 ETL 入库与查询优化}}
 \begin{itemize}
-  \item 以 Python 构建抽取—转换—加载（ETL）系统，将原始制造数据自动写入 Microsoft SQL Server 数据库
-  \item 实现后端流水线：从指定服务器自动拉取 10GB 新增 CSV 文件，完成数据清洗并以并行加载流在 2 分钟内入库
-  \item 通过为高频表建立索引、使用优化器提示（optimizer hints）、重构陈旧 SQL 语句，将查询性能提升 \textbf{500\%}
+\item 以 Python 构建抽取—转换—加载（ETL）系统，将原始制造数据自动写入 Microsoft SQL Server 数据库
+\item 实现后端流水线：从指定服务器自动拉取 10GB 新增 CSV 文件，完成数据清洗并以并行加载流在 2 分钟内入库
+\item 通过为高频表建立索引、使用优化器提示（optimizer hints）、重构陈旧 SQL 语句，将查询性能提升 \textbf{500\%}
 \end{itemize}
 \fi
 
@@ -131,7 +134,7 @@
 
 \sectionTitle{学术服务}{\faiconsixbf{clipboard-check}}
 \begin{onehalfspacing}
-\normalline{\textbf{期刊审稿}：IEEE TDSC（CCF A）、ACM TIST（CCF B，特邀）}
+\normalline{\textbf{期刊审稿}：IEEE TDSC（CCF A）、ACM TIST（CCF B，外部审稿人）}
 \normalline{\textbf{论文成果评估（Artifact Evaluation）委员}：IEEE S\&P 2026、ACM CCS 2024（均为 CCF A）}
 \end{onehalfspacing}
 
@@ -145,7 +148,7 @@
 \sectionTitle{专业技能}{\faiconsixbf{gears}}
 \begin{onehalfspacing}
 \normalline{\textbf{编程语言}：C/C++、Python、Java、OCaml、TypeScript、SQL}
-\normalline{\textbf{安全与逆向}：AFL++、Jazzer、PGFuzz、ASan/MSan、CodeQL、IDA Pro、Ghidra、angr、QEMU、GDB}
+\normalline{\textbf{安全与逆向}：AFL++、Jazzer、PGFuzz、CodeQL、IDA Pro、Ghidra、angr、QEMU、GDB}
 \normalline{\textbf{大模型与智能体}：OpenAI Agents SDK、LangChain、PyTorch、Hugging Face Transformers}
 \normalline{\textbf{系统、数据库与嵌入式}：Docker、Kubernetes、Microsoft SQL Server、SQLite、Neo4j、PX4 / Gazebo SITL}
 \end{onehalfspacing}
