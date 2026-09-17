@@ -4,9 +4,12 @@ PDFS = $(SRC:.tex=.pdf)
 
 all: clean pdf
 
-en: clean
+.PHONY: all en zh_CN zh-industry zh-academic zh-all pdf clean
+
+en:
 	mkdir -p build
-	xelatex -output-directory=build resume.tex 
+	xelatex -interaction=nonstopmode -halt-on-error -output-directory=build english_resume.tex
+	xelatex -interaction=nonstopmode -halt-on-error -output-directory=build english_resume.tex
 
 zh_CN: zh-industry
 

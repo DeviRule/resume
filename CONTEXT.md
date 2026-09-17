@@ -3,12 +3,30 @@
 本仓库是一份 LaTeX 简历模板（fork 自 billryan/resume）及其中文实例。
 本文件只记录**词汇与体裁约定**，不记录实现细节。
 
+## English résumé terminology
+
+**International industry résumé**:
+The English résumé for industry applications in markets such as the US and Singapore. It includes work and research experience, publications, honors and fellowships, academic service, and technical skills; it omits China-specific career objectives and teaching experience.
+_Avoid_: Treating it as a literal translation of the domestic career-objective section.
+
+**Triage**:
+Assessing whether a reported finding is valid, distinct from identifying a vulnerability's root cause.
+_Avoid_: Diagnosis as a synonym for triage.
+
+**Occluded bug**:
+A vulnerability masked by a more readily triggered crash during fuzzing.
+_Avoid_: Hidden bug as a generic substitute.
+
+**Artifact evaluation**:
+Peer review of the code, data, and reproducible experiments accompanying a research paper.
+_Avoid_: Product evaluation.
+
 ## 体裁
 
 - **简历（业界版）** — 面向国内业界投递。入口 `resume-zh_CN.tex`。
 - **简历（教职版）** — 面向高校教职/学术岗位。入口 `resume-zh_CN-academic.tex`。
 - 两者**内容深度相同**（同一套 bullet、同一份论文列表），差异只在体裁惯例：
-  1. USC / UC Davis 的 GPA 仅教职版显示（业界版只显示 ASU 的 4.3/4.0）；
+  1. 教育经历中的 GPA 按各版本的展示需要保留；ASU 的 GPA 为 4.0/4.0；
   2. 荣誉与奖学金：业界版合并为一节，教职版拆成「荣誉奖项」「奖学金」两节；
   3. LitePoint 本科实习仅业界版显示（对教职评审是噪音）；
   4. 「教学经历」仅教职版显示（国内高校招聘看重，业界不看）。
@@ -47,7 +65,7 @@
 - **遮蔽缺陷（occluded bug）** — 被更易触发的崩溃所掩盖、因而在常规 fuzzing 中
   无法暴露的漏洞。不是"隐藏漏洞"的泛称。
 - **AIxCC** — DARPA AI 网络挑战赛。国内读者认知度低，**凡出现必须附带说明**
-  （面向真实开源软件的自动化漏洞发现与修复全球竞赛、第五名、300 万美元奖金），
+  （面向真实开源软件的自动化漏洞发现与修复全球竞赛、第五名、200 万美元团队奖金），
   否则"第五名"脱离语境不构成信息。
 - **在投（under submission）** — 已投稿未接收。与 arXiv 预印本是不同状态，两版均需明示。
 

@@ -12,6 +12,16 @@
 使用：
 `make zh_CN`
 
+英文业界简历（面向美国、新加坡等市场）：
+
+```sh
+make en
+```
+
+编辑 `english_resume.tex`，使用 XeLaTeX 编译两次后输出 `build/english_resume.pdf`。
+`make en` 不会清理已有的中文 PDF。英文内容参考 `texs/sections.tex` 单独维护，
+包含工作与研究经历、论文、荣誉与奖学金、学术服务及技能，不包含国内求职意向或教学经历。
+
 ## 效果图
 ![效果图](./images/resume_example.jpg)
 
