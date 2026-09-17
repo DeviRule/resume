@@ -40,9 +40,9 @@
 \normalline{\textbf{根因驱动的漏洞修复（Root-Cause-Driven Patching）}}
 \begin{itemize}
 \item 设计了一套两阶段自动修复漏洞的流程：先用静态分析结合程序运行信息，定位漏洞可能的根因，能找出 CodeQL 这类纯静态工具漏掉的跨位置缺陷和间接调用
-\item 把定位结果交给一个轻量修复 Agent，并给它仓库搜索和文件编辑工具，让它理解相关代码后生成补丁
-\item 收集并整理 178 个 C/C++ 漏洞，逐个人工标注补丁质量，用来对比不同 Agent 的修复效果
-\item 请三位专家评审，按多数意见确定最终结果；相比 ChatGPT Codex 等通用编码 Agent，补丁质量提升了 20%
+\item 把定位结果交给一个漏洞修复智能体，并给它仓库搜索和文件编辑工具，让它理解相关代码后生成补丁
+\item 收集并整理 178 个 C/C++ 漏洞，逐个人工标注补丁质量，用来对比不同智能体的修复效果
+\item 请三位专家评审，按多数意见确定最终结果；相比 ChatGPT Codex 等通用编码智能体补丁质量提升20\%
 \end{itemize}
 \normalline{\textbf{无人机固件安全与信息物理漏洞挖掘}}
 \normalline{美国国防高级研究计划局资助项目FIRE， 资助800万美金}
@@ -56,7 +56,7 @@
 \begin{itemize}
 \item 设计并实现了一条 LLM 辅助的源码修补 + AFL++ 模糊测试（fuzzing）流水线，用来挖成熟代码库里那些被更容易触发的崩溃掩盖住的遮蔽缺陷（occluded bugs）
 \item 把流程串成自动闭环：崩溃聚类、根因提示 → LLM 改源码 → 重新构建 → 再跑 fuzz；中间用定向回归测试确认修复没问题。误报率从 90\% 降到 30\%，最后产出详细漏洞报告和 PoC 测试用例
-\item 在 Objdump、FFmpeg、GPAC 等项目上，单目标发现 20+ 个独立遮蔽漏洞，包括 Use-After-Free、堆/栈溢出和段错误，都用 ASan/MSan 及定向回归测试验证过
+\item 在 Objdump、FFmpeg、GPAC 等项目上，单目标发现 20+ 个独立遮蔽漏洞，包括释放后重用（Use After Free）、堆/栈溢出（Stack/Heap Overflow，都用 ASan/MSan 及定向回归测试验证过
 \end{itemize}
 
 \datedsubsection{\textbf{Team Shellphish / 人工智能网络安全挑战赛（AIxCC）}\ 美国·坦佩}{2023.08 -- 2025.08}
@@ -141,7 +141,7 @@
 \ifacademic
 \sectionTitle{教学经历}{\faiconsixbf{chalkboard-user}}
 \begin{onehalfspacing}
-\datedline{亚利桑那州立大学\space CSE 365《网络安全导论》\space 助教（Teaching Assistant）}{2023.08 -- 2023.12}
+\datedline{亚利桑那州立大学\space CSE 365《网络安全导论》\space 助教（Teaching Assistant）}{2024.01 -- 2024.05}
 \end{onehalfspacing}
 \fi
 
