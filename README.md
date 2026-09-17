@@ -22,6 +22,12 @@ make en
 `make en` 不会清理已有的中文 PDF。英文内容参考 `texs/sections.tex` 单独维护，
 包含工作与研究经历、论文、荣誉与奖学金、学术服务及技能，不包含国内求职意向或教学经历。
 
+`make clean` 清理 `build/` 中的输出，以及根目录下与 `.tex` 入口同名的 PDF 和 LaTeX 辅助文件。
+
+`make all`（或 `make pdf`）直接在 `build/` 编译所有根目录下的 `.tex` 入口，PDF 和辅助文件均不会写入根目录。
+所有构建目标均保留已有输出，按源文件修改时间增量编译；需要清理时单独运行 `make clean`。
+`make zh-industry`、`make zh-academic` 和 `make zh-all` 还会在 `build/` 保留对应的中文命名 PDF 副本。
+
 ## 效果图
 ![效果图](./images/resume_example.jpg)
 

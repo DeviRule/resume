@@ -1,41 +1,31 @@
 SRC = $(wildcard *.tex)
 
-PDFS = $(SRC:.tex=.pdf)
+PDFS = $(addprefix build/,$(SRC:.tex=.pdf))
+GENERATED_EXTENSIONS = pdf aux log bbl blg synctex.gz synctex.gz\(busy\) out toc lof lot idx ilg ind fls fdb_latexmk dvi xdv
+ROOT_GENERATED = $(foreach ext,$(GENERATED_EXTENSIONS),$(SRC:.tex=.$(ext)))
 
-all: clean pdf
+all: pdf
 
 .PHONY: all en zh_CN zh-industry zh-academic zh-all pdf clean
 
-en:
-	mkdir -p build
-	xelatex -interaction=nonstopmode -halt-on-error -output-directory=build english_resume.tex
-	xelatex -interaction=nonstopmode -halt-on-error -output-directory=build english_resume.tex
+en: build/english_resume.pdf
 
 zh_CN: zh-industry
 
-zh-industry: clean
+zh-industry: build/resume-zh_CN.pdf
+	cp $< "build/王虎林-简历-公司.pdf"
+
+zh-academic: build/resume-zh_CN-academic.pdf
+	cp $< "build/王虎林-简历-教职.pdf"
+
+zh-all: zh-industry zh-academic
+
+pdf: $(PDFS)
+
+build/%.pdf: %.tex resume.cls $(wildcard texs/*.tex stys/*.sty)
 	mkdir -p build
-	xelatex -output-directory=build resume-zh_CN.tex
-	xelatex -output-directory=build resume-zh_CN.tex
-	mv build/resume-zh_CN.pdf "build/王虎林-简历-公司.pdf"
-
-zh-academic: clean
-	mkdir -p build
-	xelatex -output-directory=build resume-zh_CN-academic.tex
-	xelatex -output-directory=build resume-zh_CN-academic.tex
-	mv build/resume-zh_CN-academic.pdf "build/王虎林-简历-教职.pdf"
-
-zh-all: clean
-	mkdir -p build
-	xelatex -output-directory=build resume-zh_CN.tex && xelatex -output-directory=build resume-zh_CN.tex
-	xelatex -output-directory=build resume-zh_CN-academic.tex && xelatex -output-directory=build resume-zh_CN-academic.tex
-	mv build/resume-zh_CN.pdf "build/王虎林-简历-公司.pdf"
-	mv build/resume-zh_CN-academic.pdf "build/王虎林-简历-教职.pdf"
-
-pdf: clean $(PDFS)
-
-%.pdf:  %.tex
-	xelatex $<
+	xelatex -interaction=nonstopmode -halt-on-error -output-directory=build $<
+	xelatex -interaction=nonstopmode -halt-on-error -output-directory=build $<
 
 ifeq ($(OS),Windows_NT)
 # on Windows
@@ -46,5 +36,5 @@ RM = rm -f
 endif
 
 clean:
-	# $(RM) *.log *.aux *.bbl *.blg *.synctex.gz *.out *.toc *.lof *.idx *.ilg *.ind *.pdf
+	$(RM) $(ROOT_GENERATED)
 	$(RM) build/*
